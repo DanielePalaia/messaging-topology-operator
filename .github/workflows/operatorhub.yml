@@ -35,8 +35,8 @@ jobs:
         run: |
           git clone https://github.com/rabbitmq/OLM-Package-Repo
           wget https://github.com/rabbitmq/messaging-topology-operator/releases/latest/download/messaging-topology-operator-with-certmanager.yaml
-          cp ./messaging-topology-operator-with-certmanager.yaml ./OLM-Package-Repo/generate_OLM/generate_OLM_messaging_topology_operator/manifests_crds/crds
-          cp ./config/crd/bases/*.yaml ./OLM-Package-Repo/generate_OLM/generate_OLM_messaging_topology_operator/manifests_crds/
+          cp ./messaging-topology-operator-with-certmanager.yaml ./OLM-Package-Repo/generate_OLM/generate_OLM_messaging_topology_operator/manifests_crds/
+          cp ./config/crd/bases/*.yaml ./OLM-Package-Repo/generate_OLM/generate_OLM_messaging_topology_operator/manifests_crds/crds
           cd ./OLM-Package-Repo/generate_OLM/generate_OLM_messaging_topology_operator/
           python3 generate-olm-package.py ./manifests_crds/messaging-topology-operator-with-certmanager.yaml ${{ env.RELEASE_VERSION }} ./../../OLM2/rabbitmq-messaging-topology-operator
         
