@@ -35,10 +35,10 @@ jobs:
         run: |
           git clone https://github.com/rabbitmq/OLM-Package-Repo
           wget https://github.com/rabbitmq/messaging-topology-operator/releases/latest/download/messaging-topology-operator-with-certmanager.yaml
-          cp ./cluster-operator.yml ./OLM-Package-Repo/generate_OLM/generate_OLM_messaging_topology_operator/manifests_crds/crds
+          cp ./messaging-topology-operator-with-certmanager.yaml ./OLM-Package-Repo/generate_OLM/generate_OLM_messaging_topology_operator/manifests_crds/crds
           cp ./config/crd/bases/*.yaml ./OLM-Package-Repo/generate_OLM/generate_OLM_messaging_topology_operator/manifests_crds/
           cd ./OLM-Package-Repo/generate_OLM/generate_OLM_messaging_topology_operator/
-          python3 generate-olm-package.py ./manifests_crds/cluster-operator.yaml ${{ env.RELEASE_VERSION }} ./../../OLM2/rabbitmq-messaging-topology-operator
+          python3 generate-olm-package.py ./manifests_crds/messaging-topology-operator-with-certmanager.yaml ${{ env.RELEASE_VERSION }} ./../../OLM2/rabbitmq-messaging-topology-operator
         
       # Create the PR to OperatorHUB
       - name: CreateOperatorHubPR
@@ -49,7 +49,7 @@ jobs:
           cd community-operators/operators/rabbitmq-messaging-topology-operator
           git branch rabbitmq-${{ env.RELEASE_VERSION }}
           git checkout rabbitmq-${{ env.RELEASE_VERSION }}
-          cp -fR /home/runner/work/cluster-operator/cluster-operator/OLM-Package-Repo/OLM2/rabbitmq-messaging-topology-operator/${{ env.RELEASE_VERSION }} .
+          cp -fR /home/runner/work/messaging-topology-operator/messaging-topology-operator/OLM-Package-Repo/OLM2/rabbitmq-messaging-topology-operator/${{ env.RELEASE_VERSION }} .
           git add .
           git commit -s -m "RabbitMQ messaging operator new release"
           git push https://DanielePalaia:"$TOKEN"@github.com/rabbitmq/community-operators
