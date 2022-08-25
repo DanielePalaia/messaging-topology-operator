@@ -34,7 +34,7 @@ jobs:
       - name: GenerateOLMBundle
         run: |
           git clone https://github.com/rabbitmq/OLM-Package-Repo
-          wget https://github.com/rabbitmq/messaging-topology-operator/releases/latest/download/messaging-topology-operator-with-certmanager.yml
+          wget https://github.com/rabbitmq/messaging-topology-operator/releases/latest/download/messaging-topology-operator-with-certmanager.yaml
           cp ./cluster-operator.yml ./OLM-Package-Repo/generate_OLM/generate_OLM_messaging_topology_operator/manifests_crds/crds
           cp ./config/crd/bases/*.yaml ./OLM-Package-Repo/generate_OLM/generate_OLM_messaging_topology_operator/manifests_crds/
           cd ./OLM-Package-Repo/generate_OLM/generate_OLM_messaging_topology_operator/
