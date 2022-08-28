@@ -40,8 +40,8 @@ jobs:
           cd ./OLM-Package-Repo/generate_OLM/generate_OLM_messaging_topology_operator/
           python3 generate-olm-package.py ./manifests_crds/messaging-topology-operator-with-certmanager.yaml ${{ env.RELEASE_VERSION }} ./../../OLM2/rabbitmq-messaging-topology-operator
           cp ./generators/cluster-service-version-generator-openshift.yml ./generators/cluster-service-version-generator.yml
-          cp ./generators/annotations-openshift.yml ./annotations.yml
-          python3 generate-olm-package.py ./manifests_crds/cluster-operator.yaml ${{ env.RELEASE_VERSION }} ./../../OLM2/rabbitmq-messaging-topology-operator-openshift
+          cp ./generators/annotations-openshift.yaml ./annotations.yaml
+          python3 generate-olm-package.py ./manifests_crds/messaging-topology-operator-with-certmanager.yaml ${{ env.RELEASE_VERSION }} ./../../OLM2/rabbitmq-messaging-topology-operator-openshift
         
       # Create the PR to OperatorHUB
       - name: CreateOperatorHubPR
